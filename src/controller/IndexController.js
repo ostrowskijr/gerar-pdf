@@ -2,41 +2,41 @@ const pdf = require('html-pdf');
 const nodemailer = require('nodemailer');
 const path = require('path');
 const filePath = path.join('./public/download/', 'report.pdf');
-const passengers = [
+const contacts = [
     {
-        "name": "Luis Ostrowski",
-        "flightNumber": 7589,
-        "time": "14h00"
+        "name": "João da Silva",
+        "email": "joao@gmail.com",
+        "fone": "(44) 94564-1234"
     },
     {
-        "name": "Isadora Ostrowski",
-        "flightNumber": 7569,
-        "time": "18h00"
+        "name": "Pedro Oliveira",
+        "email": "pedro@yahoo.com.br",
+        "fone": "(43) 94466-1244"
     },
     {
-        "name": "JOão da Silva",
-        "flightNumber": 4500,
-        "time": "21h00"
+        "name": "Velozo",
+        "email": "vs@bol.com.br",
+        "fone": "(11) 12345-4567"
     },
     {
         "name": "Pedro Silva",
-        "flightNumber": 2652,
-        "time": "13h30"
+        "email": "silva@apple.com",
+        "fone": "(15) 4565-1234"
     },
     {
-        "name": "Celio Ostrowski",
-        "flightNumber": 2511,
-        "time": "23h00"
+        "name": "Celio de Jesus",
+        "email": "cj@teste.net",
+        "fone": "(11) 64568-1234"
     },
     {
-        "name": "Andre Batista",
-        "flightNumber": 2455,
-        "time": "21h30"
+        "name": "Andre Mourão",
+        "email": "andre@hotmail.com",
+        "fone": "(44) 3589-2424"
     },
 ];
 
 const index = (req, res) => {
-    res.render('print', { passengers }, (err, html) => {
+    res.render('print', { contacts }, (err, html) => {
         if (err) {
             return res.send('Erro na leitura do Arquivo! ' + err);
         }
@@ -62,7 +62,7 @@ const index = (req, res) => {
 };
 
 const download = (req, res) => {
-    return res.download(filePath, 'ReportPassengers.pdf', (err, data) => {
+    return res.download(filePath, 'Contacts.pdf', (err, data) => {
         if (err) {
             return res.send(`Erro ao realizar download do arquivo: ${filePath} - Erro: ${err}`);
         }
@@ -90,7 +90,7 @@ const sendmail = (req, res) => {
     const transport = nodemailer.createTransport(transportOptions);
     let mailoptions = {
         to: email,
-        from: 'ostrowskijr@gmail.com',
+        from: process.env.EMAIL,
         subject: 'Envio E-mail aplicação NodeJs',
         text: `Teste rotina de envio de e-mail Node Js, usuário: ${nome}`,
         attachments : [{

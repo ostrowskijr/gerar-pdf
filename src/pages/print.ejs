@@ -16,28 +16,28 @@
 </head>
 <body>
     <div>
-        <h1>Lista de Passageiros.</h1>
+        <h1>Lista de Contatos.</h1>
         <table class="table">
             <thead>
                 <tr>
                     <th>Name</th>
-                    <th>FlightNumber</th>
-                    <th>Time</th>
+                    <th>E-mail</th>
+                    <th>Fone</th>
                 </tr>
             </thead>
             <tbody>                   
-                <% passengers.forEach(element => { %>
+                <% contacts.forEach(element => { %>
                     <tr>
                         <td><%= element.name %> </td>
-                        <td><%= element.flightNumber %> </td>
-                        <td><%= element.time %> </td>
+                        <td><%= element.email %> </td>
+                        <td><%= element.fone %> </td>
                     </tr>
                 <% }); %>                                    
                 
             </tbody>
             <tfoot>
                 <tr>
-                    <td><%= passengers.length %> Passageiros</td>
+                    <td><%= contacts.length %> Contacts</td>
                 </tr>
             </tfoot>
         </table>
