@@ -1,0 +1,25 @@
+{
+  "name": "gerar-pdf",
+  "version": "1.0.0",
+  "description": "Gerar arquivo Pdf no Node js.",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon src/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ostrowskijr/gerar-pdf.git"
+  },
+  "author": "Luis A Ostrowski Junior",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ostrowskijr/gerar-pdf/issues"
+  },
+  "homepage": "https://github.com/ostrowskijr/gerar-pdf#readme",
+  "dependencies": {
+    "ejs": "^3.1.6",
+    "express": "^4.17.1",
+    "html-pdf": "^3.0.1",
+    "nodemon": "^2.0.7"
+  }
+}
