@@ -3,6 +3,7 @@ const pdf = require('html-pdf')
 const path = require('path');
 const server = express();
 const PORT = process.env.PORT || 3000;
+const filePath = './public/download/report.pdf';
 
 server.set('view engine', 'ejs');
 server.set('views', path.join(__dirname, 'pages'));
@@ -48,17 +49,26 @@ server.get('/', (req, res) => {
             },
             footer : {
                 height : "20mm"
-            }
+            }            
         }
-        pdf.create(html, options).toFile('report.pdf', (err, data) => {
+        //
+        pdf.create(html, options).toFile(filePath, (err, data) => {
             if (err) {
                 return res.send('Erro na leitura do Arquivo! ' + err);
-            }            
+            }
         });        
         // Enviar para o navegador.
         return res.send(html);
     });
 });
+
+server.get('/download', (req, res, next) => {
+    return res.download(filePath, 'ReportPassengers.pdf', (err, data) => {
+        if (err){
+            return res.send(`Erro ao realizar download do arquivo: ${filePath} - Erro: ${err}`);
+        }
+    });
+})
 
 server.listen(PORT, (error) => {
     if (!error) {
